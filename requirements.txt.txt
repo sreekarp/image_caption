@@ -1,0 +1,6 @@
+fastapi
+Pillow
+tensorflow
+--upgrade fastapi pydantic
+Jinja2
+python-multipart

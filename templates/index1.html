@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Styler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        #image-upload {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        #uploaded-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            display: none;
+            margin-top: 20px;
+        }
+
+        /* Custom styles for the file input button */
+        .custom-file-upload {
+            display: inline-block;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+        }
+
+        /* Style the file input button as a button */
+        #file-upload-button {
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        #file-upload-button input {
+            position: absolute;
+            font-size: 100px;
+            right: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Apply the same style to the Submit button */
+        #submit-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Image Caption Generator</h1>
+        <form action="/process" method="POST" enctype="multipart/form-data">
+            <label for="image-upload" id="file-upload-button" class="custom-file-upload">Select Image</label>
+            <input type="file" id="image-upload" name="image" accept="image/*" required>
+            <img id="uploaded-image" src="#" alt="Uploaded Image">
+            <input type="submit" id="submit-button" value="Submit">
+        </form>
+    </div>
+    <div class="container">
+        <p class="txt" >This Model is trained on flickr8k dataset, Kindly use image from this dataset for better results.</p>
+    </div>
+    <script>
+        const imageUpload = document.getElementById("image-upload");
+        const uploadedImage = document.getElementById("uploaded-image");
+
+        imageUpload.addEventListener("change", function () {
+            const file = imageUpload.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = "block";
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+
+</html>
