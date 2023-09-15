@@ -1,6 +1,7 @@
 fastapi
 Pillow
 tensorflow
---upgrade fastapi pydantic
+pydantic
 Jinja2
 python-multipart
+uvicorn==0.15.0
